@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+.landing {
+  height: 100vh;
+  position: relative;
+}
+
+.landing > h1 {
+  font-weight: 700;
+  font-size: 31.25px;
+  line-height: 37px;
+  letter-spacing: 5px;
+}
+
+.landing > p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.btn {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.blob-up {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 250px;
+  width: 250px;
+}
+
+.blob-down {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 250px;
+  width: 250px;
+}
