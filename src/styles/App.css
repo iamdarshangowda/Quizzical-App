@@ -26,6 +26,20 @@ body {
   line-height: 19px;
 }
 
+.input-label {
+  font-size: 1.1em;
+  font-weight: 700;
+  z-index: 1;
+  width: 250px;
+}
+
+.input-text {
+  color: #293264;
+  box-shadow: 0 0 0.6em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 1;
+}
+
 .btn {
   font-family: inherit;
   font-weight: 500;
@@ -39,6 +53,7 @@ body {
   left: 0px;
   height: 250px;
   width: 250px;
+  z-index: -1;
 }
 
 .blob-down {
@@ -47,4 +62,13 @@ body {
   top: 0px;
   height: 250px;
   width: 250px;
+  z-index: -1;
+}
+
+@media screen and (max-width: 625px) {
+  .input-label {
+    font-size: 1.1em;
+    font-weight: 700;
+    z-index: 1;
+  }
 }

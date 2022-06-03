@@ -2,21 +2,24 @@ import React from "react";
 
 export default function Landing(props) {
   return (
-    <div className="landing">
-      <h1>Quizzical</h1>
-      <p>Test your knowledge</p>
+    <div className="landing container-fluid d-flex justify-content-center align-items-center flex-column">
+      <h1 className="mb-4">Quizzical</h1>
+      <p className="mb-4">Test your knowledge</p>
       {props.error && (
         <h2 className="noQuestions-text">
           Oops! We couldn't find any questions with these options!
         </h2>
       )}
-      <section className="input-container">
+      <section className="input-container p-2 d-flex flex-column">
         {/* Category */}
-        <div className="category">
-          <label htmlFor="category">Category:</label>
+        <div className="category mb-4">
+          <label htmlFor="category" className="input-label">
+            Category:
+          </label>
           <select
             id="category"
             name="category"
+            className="p-2 text-dark rounded h-3"
             value={props.options.category}
             onChange={props.change}
           >
@@ -50,11 +53,14 @@ export default function Landing(props) {
           </select>
         </div>
         {/* Difficulty */}
-        <div className="difficulty">
-          <label htmlFor="difficulty">Difficulty:</label>
+        <div className="difficulty mb-4">
+          <label htmlFor="difficulty" className="input-label">
+            Difficulty:
+          </label>
           <select
             id="difficulty"
             name="difficulty"
+            className="p-2 text-dark rounded h-3"
             value={props.options.difficulty}
             onChange={props.change}
           >
@@ -64,20 +70,23 @@ export default function Landing(props) {
             <option value="hard">Hard</option>
           </select>
         </div>
-      </section>
-      {/* Type */}
-      <section className="type">
-        <label htmlFor="type">Type:</label>
-        <select
-          id="type"
-          name="type"
-          value={props.options.type}
-          onChange={props.change}
-        >
-          <option value="">Any Type</option>
-          <option value="multiple">Multiple Choice</option>
-          <option value="boolean">True / False</option>
-        </select>
+        {/* Type */}
+        <div className="type mb-4">
+          <label htmlFor="type" className="input-label">
+            Type:
+          </label>
+          <select
+            id="type"
+            name="type"
+            className="input-text p-2 text-dark rounded h-3"
+            value={props.options.type}
+            onChange={props.change}
+          >
+            <option value="">Any Type</option>
+            <option value="multiple">Multiple Choice</option>
+            <option value="boolean">True / False</option>
+          </select>
+        </div>
       </section>
       <button className="btn btn-dark btn-lg" onClick={props.start}>
         Start Quiz

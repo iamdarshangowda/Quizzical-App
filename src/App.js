@@ -29,18 +29,18 @@ function App() {
   }
 
   return (
-    <div>
+    <main>
       {start ? (
         <QuestionList />
       ) : (
         <Landing
           start={handleGameStart}
           error={showNoQuestionsError}
-          option={gameOption}
+          options={gameOption}
           change={handleChange}
         />
       )}
-    </div>
+    </main>
   );
 }
 
