@@ -154,8 +154,12 @@ const App = () => {
 
       <footer>
         Developed by&nbsp;
-        <a href="https://gastonperez.ar/en" target="_blank" rel="noreferrer">
-          Gast&oacute;n P&eacute;rez
+        <a
+          href="https://github.com/iamdarshangowda"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Darsha Gowda
         </a>
       </footer>
     </main>
