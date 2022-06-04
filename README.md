@@ -1,3 +1,5 @@
+Quizzical App | <a href="https://629b54d21c398471e19f6f66--rococo-elf-6e2054.netlify.app/">DEMO</a>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
