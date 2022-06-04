@@ -1,74 +1,138 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.shape-top {
+  position: absolute;
+  right: 0;
+  width: 20vw;
+  z-index: -1;
 }
 
-body {
-  font-family: "Inter", Arial, Helvetica, sans-serif;
+.shape-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 18vw;
+  z-index: -1;
 }
 
-.landing {
+.game-title {
+  font-weight: 700;
+  font-size: 2em;
+  text-align: center;
+}
+
+.game-intro {
   height: 100vh;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.landing > h1 {
-  font-weight: 700;
-  font-size: 31.25px;
-  line-height: 37px;
-  letter-spacing: 5px;
+.game-intro h1 {
+  margin: 0;
 }
 
-.landing > p {
+.game-intro p {
+  margin: 2em 0 2em 0;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 1em;
 }
 
-.input-label {
-  font-size: 1.1em;
-  font-weight: 700;
-  z-index: 1;
-  width: 250px;
+.game-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.input-text {
+.game-text {
+  text-align: center;
+}
+
+.gameOptions-container {
+  margin-bottom: 1em;
+}
+
+.select-container {
+  margin-bottom: 1.1em;
+  width: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-select {
+  border: 0;
+  font: inherit;
+  width: 100%;
+  height: 3em;
+  padding: 0 1em 0 1em;
   color: #293264;
+  border-radius: 0.25em;
   box-shadow: 0 0 0.6em 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  z-index: 1;
 }
 
-.btn {
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-}
-
-.blob-up {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  height: 250px;
+.custom-label {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-right: 1.5em;
   width: 250px;
-  z-index: -1;
 }
 
-.blob-down {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  height: 250px;
-  width: 250px;
-  z-index: -1;
+.noQuestions-text {
+  margin-bottom: 1.5em;
+  text-align: center;
 }
 
 @media screen and (max-width: 625px) {
-  .input-label {
-    font-size: 1.1em;
-    font-weight: 700;
-    z-index: 1;
+  .game-container {
+    position: static;
+    top: unset;
+    left: unset;
+    transform: none;
+    padding: 2em 1em 0 1em;
+  }
+
+  .shape-top {
+    width: 25vw;
+  }
+
+  .shape-bottom {
+    position: static;
+    width: 40vw;
+    z-index: -1;
+  }
+
+  .game-intro {
+    padding: 0 1.5em 0 1.5em;
+    height: 85vh;
+  }
+
+  .custom-label {
+    margin-right: 10px;
+    width: 160px;
+  }
+
+  .select-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 800px) and (orientation: landscape) {
+  .game-container {
+    position: static;
+    top: unset;
+    left: unset;
+    transform: none;
+    padding: 2em 0;
+    width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .shape-bottom {
+    position: static;
+    width: 10vw;
+    z-index: -1;
   }
 }

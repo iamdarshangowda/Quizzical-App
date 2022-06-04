@@ -4,31 +4,35 @@ import { decode } from "html-entities";
 import "../styles/Question.css";
 
 const Question = (props) => {
-  const incorrectAnswerElements = props.incorrectAnswer.map((answer) => {
-    const incorrectAnswerClassName = `${
-      props.selectedAnswer === answer ? "question-btn-selected" : "question-btn"
-    }``${
-      props.selectedAnswer === answer &&
-      props.showAnswer &&
-      "question-btn-incorrect"
-    }`;
+  const incorrectAnswersElements = props.incorrectAnswers.map((answer) => {
+    const incorrectAnswerClassName = `
+			${props.selectedAnswer === answer ? "question-btn-selected" : "question-btn"}
+			${
+        props.showAnswer &&
+        props.selectedAnswer === answer &&
+        "question-btn-incorrect"
+      }
+		`;
 
     return (
       <button
         key={nanoid()}
         className={incorrectAnswerClassName}
-        onClick={() => props.handleSelectedAnswer(props.id, answer)}
+        onClick={() => props.handleSelectAnswer(props.id, answer)}
       >
         {decode(answer)}
       </button>
     );
   });
 
-  const correctAnswerClassName = `${
-    props.selectedAnswer === props.correctAnswer
-      ? "question-btn-selected"
-      : "question-btn"
-  } ${props.showAnswer && "question-btn-correct"}`;
+  const correctAnswerClassName = `
+		${
+      props.selectedAnswer === props.correctAnswer
+        ? "question-btn-selected"
+        : "question-btn"
+    }
+		${props.showAnswer && "question-btn-correct"}
+	`;
 
   const correctAnswerElement = (
     <button
@@ -40,9 +44,9 @@ const Question = (props) => {
     </button>
   );
 
-  incorrectAnswerElements.push(correctAnswerElement);
+  incorrectAnswersElements.push(correctAnswerElement);
 
-  const sortedAnswerElements = incorrectAnswerElements.sort((a, b) =>
+  const sortedAnswerElements = incorrectAnswersElements.sort((a, b) =>
     a.props.children.localeCompare(b.props.children)
   );
 
@@ -70,4 +74,5 @@ const Question = (props) => {
     </article>
   );
 };
+
 export default Question;

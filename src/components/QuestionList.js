@@ -4,22 +4,22 @@ import "../styles/QuestionList.css";
 import getQuestions from "../services/getQuestions";
 import Question from "./Question";
 
-export default function QuestionList({
+const QuestionList = ({
+  gameOptions,
   handleGameStart,
   handleNoQuestionsError,
-  gameOption,
-}) {
+}) => {
   const [questionsArray, setQuestionsArray] = useState([]);
   const [checkAnswerBtn, setCheckAnswerBtn] = useState(false);
-  const [correctAnswerCount, setCorrectAnswerCount] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const allQuestionsAnswered = questionsArray.every(
     (question) => question.selectedAnswer !== ""
   );
 
   useEffect(() => {
-    getQuestions(gameOption).then((questions) => {
+    getQuestions(gameOptions).then((questions) => {
       if (questions.length === 0) {
         handleGameStart();
         handleNoQuestionsError(true);
@@ -27,6 +27,7 @@ export default function QuestionList({
       } else {
         handleNoQuestionsError(false);
       }
+
       return setQuestionsArray(
         questions.map((question) => {
           return {
@@ -43,23 +44,23 @@ export default function QuestionList({
 
   useEffect(() => {
     if (questionsArray.length !== 0 && allQuestionsAnswered) {
-      let correctAnswerCount = 0;
+      let correctAnswers = 0;
 
       questionsArray.forEach((question) => {
-        if (question.correct_answer === question.selectedAnswer) {
-          correctAnswerCount++;
-        }
+        if (question.correct_answer === question.selectedAnswer)
+          correctAnswers++;
       });
 
-      setCorrectAnswerCount(correctAnswerCount);
+      setCorrectAnswersCount(correctAnswers);
       setCheckAnswerBtn(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [questionsArray]);
 
-  const handleSelectedAnswer = (questionId, answer) => {
-    if (!gameOver) {
-      setQuestionsArray((prev) =>
-        prev.map((question) =>
+  const handleSelectAnswer = (questionId, answer) => {
+    if (!isGameOver) {
+      setQuestionsArray((prevQuestionsArray) =>
+        prevQuestionsArray.map((question) =>
           question.id === questionId
             ? { ...question, selectedAnswer: answer }
             : question
@@ -70,10 +71,10 @@ export default function QuestionList({
 
   const checkAnswers = () => {
     if (allQuestionsAnswered) {
-      setGameOver(true);
+      setIsGameOver(true);
 
-      setQuestionsArray((prev) =>
-        prev.map((question) => ({
+      setQuestionsArray((prevQuestionsArray) =>
+        prevQuestionsArray.map((question) => ({
           ...question,
           showAnswer: true,
         }))
@@ -83,7 +84,7 @@ export default function QuestionList({
 
   const resetGame = () => {
     setCheckAnswerBtn(false);
-    setGameOver(true);
+    setIsGameOver(false);
     handleGameStart();
   };
 
@@ -93,28 +94,37 @@ export default function QuestionList({
       id={question.id}
       question={question.question}
       correctAnswer={question.correct_answer}
-      incorrectAnswer={question.incorrect_answers}
+      incorrectAnswers={question.incorrect_answers}
       difficulty={question.difficulty}
       category={question.category}
       selectedAnswer={question.selectedAnswer}
       showAnswer={question.showAnswer}
-      handleSelectedAnswer={handleSelectedAnswer}
+      handleSelectAnswer={handleSelectAnswer}
     />
   ));
+
   return (
-    <div className="questionList-container">
+    <section className="questionList-container">
       {questionElements}
-      <section className="bottom-container">
-        {gameOver && <h3>Your scored {correctAnswerCount}/5 correct answer</h3>}
+
+      <div className="bottom-container">
+        {isGameOver && (
+          <h3 className="correct-answers-text">
+            You scored {correctAnswersCount}/5 correct answers
+          </h3>
+        )}
+
         <button
           className={`btn-primary ${
             checkAnswerBtn ? "btn-check-answers" : "btn-check-answers-disabled"
           }`}
-          onClick={gameOver ? resetGame : checkAnswers}
+          onClick={isGameOver ? resetGame : checkAnswers}
         >
-          {gameOver ? "Play again" : "Check answers"}
+          {isGameOver ? "Play again" : "Check answers"}
         </button>
-      </section>
-    </div>
+      </div>
+    </section>
   );
-}
+};
+
+export default QuestionList;
