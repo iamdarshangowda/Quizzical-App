@@ -1,9 +1,25 @@
-import React from "react";
+const getQuestions = async (gameOption) => {
+  const { category, difficulty, type } = gameOption;
 
-const getQuestions = (gameOptions) => {
-  const { category, difficulty, type } = gameOptions;
+  let categoryQuery = "";
+  let difficultyQuery = "";
+  let typeQuery = "";
 
-  return <div>getQuestions</div>;
+  if (category !== "") {
+    categoryQuery = `&category=${category}`;
+  }
+  if (difficulty !== "") {
+    difficultyQuery = `&difficulty=${difficulty}`;
+  }
+  if (type !== "") {
+    typeQuery = `&type=${type}`;
+  }
+
+  let apiUrl = `https://opentdb.com/api.php?amount=5${categoryQuery}${difficultyQuery}${typeQuery}`;
+
+  const res = await fetch(apiUrl);
+  const data = await res.json();
+  return data.results;
 };
 
 export default getQuestions;

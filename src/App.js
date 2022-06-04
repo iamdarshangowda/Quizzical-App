@@ -6,7 +6,7 @@ import QuestionList from "./components/QuestionList";
 function App() {
   const [start, setStart] = useState(false);
   const [showNoQuestionsError, setShowNoQuestionsError] = useState(false);
-  const [gameOption, setGameOptions] = useState({
+  const [gameOption, setGameOption] = useState({
     category: "",
     difficulty: "",
     type: "",
@@ -22,7 +22,7 @@ function App() {
 
   function handleChange(event) {
     const { value, name } = event.target;
-    setGameOptions((prevGameOptions) => ({
+    setGameOption((prevGameOptions) => ({
       ...prevGameOptions,
       [name]: value,
     }));
@@ -31,7 +31,11 @@ function App() {
   return (
     <main>
       {start ? (
-        <QuestionList />
+        <QuestionList
+          handleGameStart={handleGameStart}
+          handleNoQuestionsError={handleNoQuestionsError}
+          gameOption={gameOption}
+        />
       ) : (
         <Landing
           start={handleGameStart}
