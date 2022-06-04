@@ -1,4 +1,4 @@
-Quizzical App | <a href="https://629b54d21c398471e19f6f66--rococo-elf-6e2054.netlify.app/">DEMO</a>
+Quizzical App | <a href="https://rococo-elf-6e2054.netlify.app/">DEMO</a>
 
 # Getting Started with Create React App
 
